@@ -287,7 +287,7 @@ mkdir -p "${data_mnt}/${data_subdir}/isos" || cleanUp 10
 if [ "$clone" -eq 1 ]; then
 	# Clone Git repository
 	(cd "$repo_dir" && \
-		git clone https://github.com/aguslr/multibootusb . && \
+		git clone https://github.com/hackerncoder/multibootusb . && \
 		# Move all visible and hidden files and folders except '.' and '..'
 		for x in * .[!.]* ..?*; do if [ -e "$x" ]; then mv -- "$x" \
 			"${data_mnt}/${data_subdir}"/grub*/; fi; done) \
@@ -306,7 +306,7 @@ fi
     || cleanUp 10
 
 # Download memdisk
-syslinux_url='https://www.kernel.org/pub/linux/utils/boot/syslinux/syslinux-6.03.tar.gz'
+syslinux_url='https://mirrors.edge.kernel.org/pub/linux/utils/boot/syslinux/syslinux-6.03.tar.gz'
 { wget -qO - "$syslinux_url" 2>/dev/null || curl -sL "$syslinux_url" 2>/dev/null; } \
     | tar -xz -C "${data_mnt}/${data_subdir}"/grub*/ --no-same-owner --strip-components 3 \
     'syslinux-6.03/bios/memdisk/memdisk' \
